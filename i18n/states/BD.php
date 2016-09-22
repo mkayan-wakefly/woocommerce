@@ -2,10 +2,10 @@
 /**
  * Bangladeshi states (districts)
  *
- * @author        Md Ariful Haque Khan
- * @category      i18n
- * @package       WooCommerce/i18n
- * @version       2.0.0
+ * @author      WooThemes
+ * @category    i18n
+ * @package     WooCommerce/i18n
+ * @version     2.0.0
  */
 global $states;
 
@@ -16,6 +16,7 @@ $states['BD'] = array(
 	'BARI' => __( 'Barisal', 'woocommerce' ),
 	'BHO'  => __( 'Bhola', 'woocommerce' ),
 	'BOG'  => __( 'Bogra', 'woocommerce' ),
+	'BRA'  => __( 'Brahmanbaria', 'woocommerce' ),
 	'CHA'  => __( 'Chandpur', 'woocommerce' ),
 	'CHI'  => __( 'Chittagong', 'woocommerce' ),
 	'CHU'  => __( 'Chuadanga', 'woocommerce' ),
@@ -28,6 +29,7 @@ $states['BD'] = array(
 	'GAI'  => __( 'Gaibandha', 'woocommerce' ),
 	'GAZI' => __( 'Gazipur', 'woocommerce' ),
 	'GOP'  => __( 'Gopalganj', 'woocommerce' ),
+	'HAB'  => __( 'Habiganj', 'woocommerce' ),
 	'JAM'  => __( 'Jamalpur', 'woocommerce' ),
 	'JES'  => __( 'Jessore', 'woocommerce' ),
 	'JHA'  => __( 'Jhalokati', 'woocommerce' ),
@@ -71,5 +73,5 @@ $states['BD'] = array(
 	'SUN'  => __( 'Sunamganj', 'woocommerce' ),
 	'SYL'  => __( 'Sylhet', 'woocommerce' ),
 	'TAN'  => __( 'Tangail', 'woocommerce' ),
-	'THA'  => __( 'Thakurgaon', 'woocommerce' )
+	'THA'  => __( 'Thakurgaon', 'woocommerce' ),
 );

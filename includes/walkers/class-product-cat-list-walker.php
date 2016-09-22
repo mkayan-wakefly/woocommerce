@@ -1,22 +1,43 @@
 <?php
 /**
- * WC_Product_Cat_List_Walker class.
+ * WC_Product_Cat_List_Walker class
  *
  * @extends 	Walker
  * @class 		WC_Product_Cat_Dropdown_Walker
- * @version		1.6.4
+ * @version		2.3.0
  * @package		WooCommerce/Classes/Walkers
  * @author 		WooThemes
  */
 
-if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
+if ( ! defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly
+}
+
+if ( ! class_exists( 'WC_Product_Cat_List_Walker' ) ) :
 
 class WC_Product_Cat_List_Walker extends Walker {
 
-	var $tree_type = 'product_cat';
-	var $db_fields = array ( 'parent' => 'parent', 'id' => 'term_id', 'slug' => 'slug' );
+	/**
+	 * What the class handles.
+	 *
+	 * @var string
+	 */
+	public $tree_type = 'product_cat';
 
 	/**
+	 * DB fields to use.
+	 *
+	 * @var array
+	 */
+	public $db_fields = array(
+		'parent' => 'parent',
+		'id'     => 'term_id',
+		'slug'   => 'slug',
+	);
+
+	/**
+	 * Starts the list before the elements are added.
+	 *
 	 * @see Walker::start_lvl()
 	 * @since 2.1.0
 	 *
@@ -28,11 +49,13 @@ class WC_Product_Cat_List_Walker extends Walker {
 		if ( 'list' != $args['style'] )
 			return;
 
-		$indent = str_repeat("\t", $depth);
+		$indent = str_repeat( "\t", $depth );
 		$output .= "$indent<ul class='children'>\n";
 	}
 
 	/**
+	 * Ends the list of after the elements are added.
+	 *
 	 * @see Walker::end_lvl()
 	 * @since 2.1.0
 	 *
@@ -44,16 +67,17 @@ class WC_Product_Cat_List_Walker extends Walker {
 		if ( 'list' != $args['style'] )
 			return;
 
-		$indent = str_repeat("\t", $depth);
+		$indent = str_repeat( "\t", $depth );
 		$output .= "$indent</ul>\n";
 	}
 
 	/**
+	 * Start the element output.
+	 *
 	 * @see Walker::start_el()
 	 * @since 2.1.0
 	 *
 	 * @param string $output Passed by reference. Used to append additional content.
-	 * @param object $category Category data object.
 	 * @param int $depth Depth of category in reference to parents.
 	 * @param integer $current_object_id
 	 */
@@ -72,7 +96,7 @@ class WC_Product_Cat_List_Walker extends Walker {
 			$output .= ' current-cat-parent';
 		}
 
-		$output .=  '"><a href="' . get_term_link( (int) $cat->term_id, 'product_cat' ) . '">' . __( $cat->name, 'woocommerce' ) . '</a>';
+		$output .= '"><a href="' . get_term_link( (int) $cat->term_id, $this->tree_type ) . '">' . _x( $cat->name, 'product category name', 'woocommerce' ) . '</a>';
 
 		if ( $args['show_count'] ) {
 			$output .= ' <span class="count">(' . $cat->count . ')</span>';
@@ -80,11 +104,12 @@ class WC_Product_Cat_List_Walker extends Walker {
 	}
 
 	/**
+	 * Ends the element output, if needed.
+	 *
 	 * @see Walker::end_el()
 	 * @since 2.1.0
 	 *
 	 * @param string $output Passed by reference. Used to append additional content.
-	 * @param object $page Not used.
 	 * @param int $depth Depth of category. Not used.
 	 * @param array $args Only uses 'list' for whether should append to output.
 	 */
@@ -96,8 +121,8 @@ class WC_Product_Cat_List_Walker extends Walker {
 	 * Traverse elements to create list from elements.
 	 *
 	 * Display one element if the element doesn't have any children otherwise,
-	 * display the element and its children. Will only traverse up to the max
-	 * depth and no ignore elements under that depth. It is possible to set the
+	 * display the element and its children. Will only traverse up to the max.
+	 * depth and no ignore elements under that depth. It is possible to set the.
 	 * max depth to include all depths, see walk() method.
 	 *
 	 * This method shouldn't be called directly, use the walk() method instead.
@@ -113,9 +138,11 @@ class WC_Product_Cat_List_Walker extends Walker {
 	 * @return null Null on failure with no changes to parameters.
 	 */
 	public function display_element( $element, &$children_elements, $max_depth, $depth = 0, $args, &$output ) {
-		if ( ! $element || 0 === $element->count ) {
+		if ( ! $element || ( 0 === $element->count && ! empty( $args[0]['hide_empty'] ) ) ) {
 			return;
 		}
 		parent::display_element( $element, $children_elements, $max_depth, $depth, $args, $output );
 	}
 }
+
+endif;

@@ -2,9 +2,9 @@
 /**
  * Peru states
  *
- * @author 		WooThemes
- * @category 	i18n
- * @package 	WooCommerce/i18n
+ * @author      WooThemes
+ * @category    i18n
+ * @package     WooCommerce/i18n
  * @version     2.1.0
  */
 global $states;
@@ -35,5 +35,5 @@ $states['PE'] = array(
 	'SAM' => __( 'San Mart&iacute;n', 'woocommerce' ),
 	'TAC' => __( 'Tacna', 'woocommerce' ),
 	'TUM' => __( 'Tumbes', 'woocommerce' ),
-	'UCA' => __( 'Ucayali', 'woocommerce' )
+	'UCA' => __( 'Ucayali', 'woocommerce' ),
 );
